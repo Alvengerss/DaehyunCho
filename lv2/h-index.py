@@ -15,7 +15,7 @@ if __name__=="__main__":
     print(f'citations: {citations} | sol: {solution(citations)} | ans: 4')
     
     citations = [31, 66]
-    print(f'citations: {citations} | sol: {solution(citations)} | ans: 3')
+    print(f'citations: {citations} | sol: {solution(citations)} | ans: 2')
     
     citations = [0, 1, 3, 5, 5, 5, 5, 5, 6]
     print(f'citations: {citations} | sol: {solution(citations)} | ans: 5')
