@@ -1,29 +1,14 @@
 import sys
+input = sys.stdin.readline
 
-#input = sys.stdin.readline
-
-def stack(lst, x):
-    
-    if x == '(':
-        return lst + [x]
-    
-    if lst == [] and x == ')':
-        return -1
-    
-    else:
-        return lst[:-1]
-    
 N = int(input())
+
 for i in range(N):
     
     seq = input()
-    ans = []
+    ans = 0
     for x in seq:
-        ans = stack(ans, x)
-        if ans == -1: break
-    
-    if ans == []:
-        print("YES")
+        ans = ans + 1 if x == '(' else ans - 1
+        if ans < 0: break
         
-    else:
-        print("NO")
+    print(f'{"YES" if ans == 0 else "NO"}')
