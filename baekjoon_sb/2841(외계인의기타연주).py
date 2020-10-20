@@ -9,6 +9,8 @@ mvmnts = 0
 for _ in range(N):
 
     line, flat = map(int, input().split())
+
+    # if there is a finger on that line
     if stack.get(line):
 
         # already pressed
@@ -22,8 +24,11 @@ for _ in range(N):
             stack[line].append(flat)
             mvmnts += 1
 
+        # when both fails(last flat lower than the current one)
         else:
 
+            # we pop out lower flats
+            # possibility to get empty
             while stack[line]:
 
                 if stack[line][-1] > flat:
@@ -44,10 +49,12 @@ for _ in range(N):
                         mvmnts += 1
                         break
 
+            # if flat empty
             if not stack[line]:
                 stack[line].append(flat)
                 mvmnts += 1
 
+    # initial press on that line
     else:
         # press
         stack[line] = [flat]
