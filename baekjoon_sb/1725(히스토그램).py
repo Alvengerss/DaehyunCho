@@ -1,31 +1,25 @@
 import sys
 
-#input = sys.stdin.readline
+input = sys.stdin.readline
 
 N = int(input())
 
-best_area = 1
-censor = None
-cnt = 1
+censor = dict()
+area = 1
 for block in range(N):
 
     height = int(input())
-    if not censor:
-        censor = height
+    
+    for c in list(filter(lambda x: x > height, censor.keys())):
+        area = max(area, censor[c] * c)
+        del censor[c]
 
-    else:
-        if censor <= height:
-            cnt += 1
-            best_area = max(best_area, censor * cnt)
+    for h in range(1, height+1):
+
+        if censor.get(h):
+            censor[h] += 1
 
         else:
-            censor = height
+            censor[h] = 1
 
-    print("censor:" , censor)
-print(best_area)
-
-
-            
-
-
-    
+print(max([k*v for k, v in censor.items()] + [area]))
