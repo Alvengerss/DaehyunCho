@@ -1,25 +1,31 @@
 import sys
+from collections import defaultdict
 
 input = sys.stdin.readline
 
 N = int(input())
 
-censor = dict()
-area = 1
+censor = defaultdict(lambda: 0)
+areas = set()
+before = 0
 for block in range(N):
 
     height = int(input())
+    censor[height] = 0
     
-    for c in list(filter(lambda x: x > height, censor.keys())):
-        area = max(area, censor[c] * c)
-        del censor[c]
+    for c in censor.keys():
 
-    for h in range(1, height+1):
+        if c > height and censor[c]:
+            print(censor[c] * c)
+            areas.add(censor[c] * c)
+            censor[before] += 2
+            censor[c] = 0
 
-        if censor.get(h):
-            censor[h] += 1
+        elif c < height:
+            censor[c] += 1
 
-        else:
-            censor[h] = 1
+    before = height
+    print(censor)
 
-print(max([k*v for k, v in censor.items()] + [area]))
+areas = areas.union(set(censor[c] * c for c in censor.keys()))
+print(areas)
