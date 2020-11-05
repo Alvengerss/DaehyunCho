@@ -20,4 +20,4 @@ for op in formula:
             operands[op] = int(input())
         stack.append(operands[op])
 
-print(stack[0])
+print(f'{stack[0]:.2f}')
