@@ -14,7 +14,7 @@ def graph_search(teammates):
 
 for case in range(N):
 
-    students = int(input()):
+    students = int(input())
     teams = []
     teammates = list(map(int, input().split())
 
